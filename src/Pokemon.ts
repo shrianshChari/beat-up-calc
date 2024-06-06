@@ -1,6 +1,6 @@
 import { Dex } from "@pkmn/dex";
 
-const allowedFormes = ['', 'Mega', 'Alola', 'Galar', 'Hisui', 'Paldea', 'Paldea-Combat', 'Paldea-Blaze', 'Paldea-Aqua'];
+const allowedFormes = ['', 'Mega', 'Alola', 'Galar', 'Hisui', 'Paldea', 'Paldea-Combat', 'Paldea-Blaze', 'Paldea-Aqua', 'Epilogue'];
 
 export function getSpecies(generation: number) {
   return Dex.forGen(generation).species.all()
