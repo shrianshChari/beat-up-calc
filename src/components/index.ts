@@ -1,3 +1,4 @@
+import Abilities from "./Ability";
 import Allies from "./Allies";
 import EffortValues from "./EffortValues";
 import IndividualValues from "./IndividualValues";
@@ -9,4 +10,4 @@ import OutcomeGraph from "./OutcomeGraph";
 import SpeciesSelect from "./SpeciesSelect";
 import StatChanges from "./StatChanges";
 
-export { Allies, EffortValues, IndividualValues, Items, Level, MinHPLikelihood, Natures, OutcomeGraph, SpeciesSelect, StatChanges };
+export { Abilities, Allies, EffortValues, IndividualValues, Items, Level, MinHPLikelihood, Natures, OutcomeGraph, SpeciesSelect, StatChanges };

@@ -27,6 +27,13 @@ export function getItems(generation: number) {
     });
 }
 
+export function getAbilities(generation: number) {
+  const abilities = Dex.forGen(generation).abilities;
+  const allAbilities = [...abilities.all()]
+
+  return allAbilities
+}
+
 export function range(start: number = 0, stop: number, step: number = 1) {
   let current = start;
   let numbers: number[] = [];

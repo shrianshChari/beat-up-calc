@@ -1,9 +1,9 @@
 import { useState, useEffect, useContext } from "react";
 
-import { getSpecies, computeStatChangeMultiplier, fixValues, getItems } from "./Pokemon"
+import { getSpecies, computeStatChangeMultiplier, fixValues, getItems, getAbilities } from "./Pokemon"
 import { calcStat, GenerationNum, Pokemon } from "@smogon/calc";
 
-import { EffortValues, IndividualValues, Items, Level, Natures, SpeciesSelect, StatChanges } from './components';
+import { Abilities, EffortValues, IndividualValues, Items, Level, Natures, SpeciesSelect, StatChanges } from './components';
 import { GenerationContext } from "./GenerationContext";
 import './test.css';
 
@@ -39,6 +39,7 @@ export default function Defender({ exportDefender }:
   const [defenseStat, setDefenseStat] = useState(calcStat(generation as GenerationNum, 'def', baseDefense, defenseIV, defenseEV, level, nature));
 
   const [item, setItem] = useState(getItems(generation)[0])
+  const [ability, setAbility] = useState(getAbilities(generation)[0])
 
   useEffect(() => {
     setBaseDefense(species.baseStats.def);
@@ -66,6 +67,7 @@ export default function Defender({ exportDefender }:
         def: defenseStatChanges
       },
       item: item.name,
+      ability: ability.name,
       overrides: {
         baseStats: {
           hp: baseHP,
@@ -77,7 +79,7 @@ export default function Defender({ exportDefender }:
         }
       }
     }));
-  }, [level, nature, baseHP, hpEV, hpIV, baseDefense, defenseEV, defenseIV, defenseStatChanges, item])
+  }, [level, nature, baseHP, hpEV, hpIV, baseDefense, defenseEV, defenseIV, defenseStatChanges, item, ability])
 
   return (
     <fieldset className="field">
@@ -168,7 +170,9 @@ export default function Defender({ exportDefender }:
         </tbody>
       </table>
 
-      <Items exportItem={setItem} id="defenderItem" />
+      <Abilities exportAbility={setAbility} />
+
+      <Items exportItem={setItem} />
 
     </fieldset>
   )

@@ -1,9 +1,9 @@
 import { useContext, useEffect, useState } from "react";
 
-import { computeStatChangeMultiplier, fixValues, getBeatUpBasePower, getItems, getSpecies } from './Pokemon';
+import { computeStatChangeMultiplier, fixValues, getAbilities, getBeatUpBasePower, getItems, getSpecies } from './Pokemon';
 import { calcStat, GenerationNum, Pokemon } from "@smogon/calc";
 
-import { Allies, EffortValues, IndividualValues, Items, Level, Natures, SpeciesSelect, StatChanges } from './components';
+import { Abilities, Allies, EffortValues, IndividualValues, Items, Level, Natures, SpeciesSelect, StatChanges } from './components';
 import { GenerationContext } from "./GenerationContext";
 import './test.css';
 
@@ -22,6 +22,7 @@ export default function Attacker({ exportAttacker, exportBasePowers }:
   const [attackStatChanges, setAttackStatChanges] = useState(0);
 
   const [item, setItem] = useState(getItems(generation)[0])
+  const [ability, setAbility] = useState(getAbilities(generation)[0])
 
   const [attackStat, setAttackStat] = useState(calcStat(generation as GenerationNum, 'atk', baseAttack, attackIV, attackEV, level, nature));
 
@@ -58,6 +59,7 @@ export default function Attacker({ exportAttacker, exportBasePowers }:
         atk: attackStatChanges
       },
       item: item.name,
+      ability: ability.name,
       overrides: {
         baseStats: {
           hp: 10,
@@ -69,7 +71,7 @@ export default function Attacker({ exportAttacker, exportBasePowers }:
         }
       }
     }));
-  }, [baseAttack, attackIV, attackEV, level, attackStatChanges, nature, species, item])
+  }, [baseAttack, attackIV, attackEV, level, attackStatChanges, nature, species, item, ability])
 
   return (
     <fieldset className="field">
@@ -127,7 +129,9 @@ export default function Attacker({ exportAttacker, exportBasePowers }:
         </tbody>
       </table>
 
-      <Items exportItem={setItem} id="attackerItem" />
+      <Abilities exportAbility={setAbility} />
+
+      <Items exportItem={setItem} />
 
       <Allies exportAllies={setAllies} id="attackerAllies" />
     </fieldset>

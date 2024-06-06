@@ -1,25 +1,23 @@
-import { Item } from "@pkmn/dex";
-import { getItems } from "../Pokemon";
-import ReactSelect from "react-select";
-import './select.css'
+import { Ability } from "@pkmn/dex";
 import { useContext } from "react";
 import { GenerationContext } from "../GenerationContext";
+import { getAbilities } from "../Pokemon";
+import ReactSelect from "react-select";
 
-export default function Items({ exportItem }:
-  { exportItem: (arg0: Item) => void, defaultItem?: string }) {
+export default function Abilities( { exportAbility }:
+  { exportAbility: (arg0: Ability) => void }) {
   const generation = useContext(GenerationContext);
-  const allItems = getItems(generation).map((item) =>
-    ({ value: item, label: item.name.length > 0 ? item.name : '(no item)' }));
+  const allAbilities = getAbilities(generation).map((ability) => 
+    ({ value: ability, label: ability.name }));
 
   return (
     <>
-      <label>Item: </label>
-
+      <label>Ability: </label>
       <ReactSelect
-        options={allItems}
-        defaultValue={allItems[0]}
+        options={allAbilities}
+        defaultValue={allAbilities[0]}
         onChange={(newValue) => {
-          exportItem(newValue ? newValue.value : allItems[0].value);
+          exportAbility(newValue ? newValue.value : allAbilities[0].value)
         }}
         className="halfWidth"
         theme={(theme) => ({
@@ -31,7 +29,7 @@ export default function Items({ exportItem }:
             primary: 'silver',
             primary25: 'midnightblue',
             primary50: 'blue',
-          },
+          }
         })}
       />
     </>
