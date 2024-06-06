@@ -4,8 +4,16 @@ const allowedFormes = ['', 'Mega', 'Alola', 'Galar', 'Hisui', 'Paldea', 'Paldea-
 
 export function getSpecies(generation: number) {
   return Dex.forGen(generation).species.all()
-    .filter((species) => species.exists && species.num >= 1 && allowedFormes.includes(species.forme))
-    .sort((a, b) => a.num - b.num);
+    .filter((species) => species.exists && !species.name.includes('Pokestar') && allowedFormes.includes(species.forme))
+    .sort((a, b) => {
+      if (a.name < b.name) {
+        return -1;
+      } else if (a.name > b.name) {
+        return 1;
+      }
+
+      return 0;
+    });
 }
 
 export function getItems(generation: number) {
