@@ -168,7 +168,7 @@ export default function Defender({ exportDefender }:
         </tbody>
       </table>
 
-      <Items exportItem={setItem} />
+      <Items exportItem={setItem} id="defenderItem" />
 
     </fieldset>
   )

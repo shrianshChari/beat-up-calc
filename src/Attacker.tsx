@@ -127,7 +127,7 @@ export default function Attacker({ exportAttacker, exportBasePowers }:
         </tbody>
       </table>
 
-      <Items exportItem={setItem} />
+      <Items exportItem={setItem} id="attackerItem" />
 
       <Allies exportAllies={setAllies} id="attackerAllies" />
     </fieldset>
