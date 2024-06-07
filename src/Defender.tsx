@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from "react";
 
-import { getSpecies, computeStatChangeMultiplier, fixValues, getItems, getAbilities } from "./Pokemon"
+import { computeStatChangeMultiplier, fixValues, getItems, getAbilities, getDefaultSpecies } from "./Pokemon"
 import { calcStat, GenerationNum, Pokemon } from "@smogon/calc";
 
 import { Abilities, EffortValues, IndividualValues, Items, Level, Natures, SpeciesSelect, StatChanges } from './components';
@@ -11,7 +11,7 @@ export default function Defender({ exportDefender }:
   { exportDefender: (arg0: Pokemon) => void }) {
   const generation = useContext(GenerationContext);
 
-  const [species, setSpecies] = useState(getSpecies(generation)[0]);
+  const [species, setSpecies] = useState(getDefaultSpecies(generation));
 
   const [level, setLevel] = useState(100)
 

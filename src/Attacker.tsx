@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 
-import { computeStatChangeMultiplier, fixValues, getAbilities, getBeatUpBasePower, getItems, getSpecies } from './Pokemon';
+import { computeStatChangeMultiplier, fixValues, getAbilities, getBeatUpBasePower, getDefaultSpecies, getItems } from './Pokemon';
 import { calcStat, GenerationNum, Pokemon } from "@smogon/calc";
 
 import { Abilities, Allies, EffortValues, IndividualValues, Items, Level, Natures, SpeciesSelect, StatChanges } from './components';
@@ -10,7 +10,7 @@ import './test.css';
 export default function Attacker({ exportAttacker, exportBasePowers }:
   { exportAttacker: (arg0: Pokemon) => void, exportBasePowers: (arg0: number[]) => void }) {
   const generation = useContext(GenerationContext);
-  const defaultSpecies = getSpecies(generation)[0];
+  const defaultSpecies = getDefaultSpecies(generation);
 
   const [species, setSpecies] = useState(defaultSpecies);
   const [level, setLevel] = useState(100)

@@ -16,6 +16,10 @@ export function getSpecies(generation: number) {
     });
 }
 
+export function getDefaultSpecies(generation: number) {
+  return getSpecies(generation)[0]
+}
+
 export function getItems(generation: number) {
   const items = Dex.forGen(generation).items;
   const allItems = [...items.all()];

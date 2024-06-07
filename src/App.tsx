@@ -5,7 +5,7 @@ import Attacker from './Attacker'
 import Defender from './Defender';
 import { GenerationContext } from './GenerationContext';
 import { Pokemon, calculate, Move, GenerationNum } from '@smogon/calc';
-import { countOutcomes, getBeatUpBasePower, range, sumCombinations } from './Pokemon';
+import { countOutcomes, getBeatUpBasePower, getDefaultSpecies, range, sumCombinations } from './Pokemon';
 import { MinHPLikelihood, OutcomeGraph } from './components';
 
 function App() {
@@ -13,7 +13,7 @@ function App() {
   const MAX_GENERATION = 9;
 
   const [generation, setGeneration] = useState(9 as GenerationNum);
-  const defaultPokemon = new Pokemon(generation, 'Bulbasaur');
+  const defaultPokemon = new Pokemon(generation, getDefaultSpecies(generation).name);
 
   const [attacker, setAttacker] = useState(defaultPokemon);
   const [defender, setDefender] = useState(defaultPokemon);
