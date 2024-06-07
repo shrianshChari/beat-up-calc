@@ -1,11 +1,20 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function MinHPLikelihood({ data }: { data: { [key: string]: number } }) {
-  const total = Object.values(data).reduce((prev, cur) => prev + cur);
-  const keys = Object.keys(data);
-  const median = parseInt(keys[Math.floor(keys.length / 2)])
+
+  let total = Object.values(data).reduce((prev, cur) => prev + cur);
+  let keys = Object.keys(data);
+  let median = parseInt(keys[Math.floor(keys.length / 2)])
 
   const [minHP, setMinHP] = useState(median);
+
+  useEffect(() => {
+    total = Object.values(data).reduce((prev, cur) => prev + cur);
+    keys = Object.keys(data);
+    median = parseInt(keys[Math.floor(keys.length / 2)])
+
+    setMinHP(median);
+  }, [data])
 
   let numberOfOutcomes = 0;
   for (let [key, value] of Object.entries(data)) {
@@ -20,7 +29,7 @@ export default function MinHPLikelihood({ data }: { data: { [key: string]: numbe
     <>
       <label>Minimum HP: </label>
       <input
-        defaultValue={minHP}
+        value={minHP}
         type="number"
         onChange={(event) => {
           setMinHP(parseInt(event.target.value))
